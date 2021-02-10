@@ -3,20 +3,24 @@ import React, { Component } from 'react';
 import imageArray from './data.js';
 import Header from './Header.js';
 import ImageList from './ImageList.js';
+import Dropdown from './dropdown.js';
 
 
 export default class App extends Component {
   state = {
-    title: '',
     horns: '',
-    description: '',
     keyword: '',
-    url: '',
   }
 
-  handleNumberOfHorns = (e) => {
+  handleHornsChange = (e) => {
     this.setState({
       horns: e.target.value
+    });
+  }
+
+  handleKeywordChange = (e) => {
+    this.setState({
+      keyword: e.target.value
     });
   }
 
@@ -31,19 +35,25 @@ export default class App extends Component {
     return (
       <>
         <Header />
-        <form>
-          Filter by Number of Horns
-          <select value={this.state.horns} onChange={this.handleNumberOfHorns}>
-            <option value='1'>1</option>
-            <option value='2'>2</option>
-            <option value='3'>3</option>
-            <option value='100'>100</option>
-            </select>
-        </form>
+        <div className='form'>
+          Filter by Number of Horns 
+          <Dropdown 
+            currentValue={this.state.horns}
+            handleChange={this.handleHornsChange}
+            options={[1, 2, 3, 100]}
+          />
+        </div>
+        <div className='form'>
+          Filter by Keyword 
+          <Dropdown 
+            currentValue={this.state.keyword}
+            handleChange={this.handleKeywordChange}
+            options={['narwhal', 'rhino', 'unicorn', 'unilego', 'triceratops', 'markhor', 'mouflon', 'addax', 'chameleon', 'lizard', 'dragon']}
+          />
+        </div>
         <div>
-          Number of Horns: {this.state.horns}
           <ul className='list'>
-          <ImageList imageArray={filteredImages} />
+            <ImageList imageArray={filteredImages} />
           </ul>
         </div>
       </>    
