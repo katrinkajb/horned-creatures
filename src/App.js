@@ -1,25 +1,46 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { Component } from 'react';
+import imageArray from './data.js';
+import Header from './Header.js';
+import ImageList from './ImageList.js';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+export default class App extends Component {
+  state = {
+    title: '',
+    horns: '',
+    description: '',
+    keyword: '',
+    url: '',
+  }
+
+  // // Handler NOT WORKING!
+  handleNumberOfHorns = (e) => {
+    this.setState({
+      horns: e.target.value
+    });
+  }
+
+  render() {
+
+    return (
+      <>
+        <Header />
+        <form>
+          Filter by Number of Horns
+          <select value={this.state.horns} onChange={this.handleNumberOfHorns}>
+            <option value='1'>1</option>
+            <option value='2'>2</option>
+            <option value='3'>3</option>
+            </select>
+        </form>
+        <div>
+          Number of Horns: {this.state.horns}
+          <ul className='list'>
+          <ImageList imageArray={imageArray} />
+          </ul>
+        </div>
+      </>    
+    )
+  }
 }
-
-export default App;
