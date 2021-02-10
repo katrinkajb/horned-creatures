@@ -14,7 +14,7 @@ export default class App extends Component {
     url: '',
   }
 
-  // // Handler
+  // // Handler NOT WORKING!
   handleNumberOfHorns = (e) => {
     this.setState({
       horns: e.target.value
@@ -22,9 +22,15 @@ export default class App extends Component {
   }
 
   render() {
+    const filteredImages = imageArray.filter((ImageItem) => {
+      // if statements for if horns = 1 do this, if horns = 2 do this, etc
+      if (!this.props.horns) return true;
+      if (ImageItem.horns === Number(this.state.horns)) return true;
+      return false;
+    });
 
     return (
-      <>
+      <div>
         <Header />
         <form>
           Filter by Number of Horns
@@ -37,10 +43,10 @@ export default class App extends Component {
         <div>
           Number of Horns: {this.state.horns}
           <ul className='list'>
-          <ImageList imageArray={imageArray} />
+          <ImageList imageArray={filteredImages} />
           </ul>
         </div>
-      </>    
+      </div>    
     )
   }
 }
