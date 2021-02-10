@@ -22,10 +22,10 @@ export default class App extends Component {
   }
 
   render() {
-    console.log(this.state);
 
     return (
       <>
+        <Header />
         <form>
           Filter by Number of Horns
           <select value={this.state.horns} onChange={this.handleNumberOfHorns}>
@@ -34,15 +34,10 @@ export default class App extends Component {
             <option value='3'>3</option>
             </select>
         </form>
-
-        <div>
-          <Header />
-          <ImageList imageArray={imageArray} />
-        </div>
         <div>
           Number of Horns: {this.state.horns}
           <ul className='list'>
-            < ImageList />
+          <ImageList imageArray={imageArray} />
           </ul>
         </div>
       </>    

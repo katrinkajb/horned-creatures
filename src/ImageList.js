@@ -12,13 +12,13 @@ export default class ImageList extends Component {
             return false;
           });
         
-          console.log(filteredImages);
-
         const imageList = this.props.imageArray.map(
-            image => <ImageItem image={image}/>
+            image => <ImageItem 
+                key={image.title}
+                image={image}/>
         )
         return (
-            <ul>{imageList}</ul>
+            <ul className='list'>{imageList}</ul>
         )
     }
 }
