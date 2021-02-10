@@ -27,8 +27,20 @@ export default class App extends Component {
   render() {
     const filteredImages = imageArray.filter((ImageItem) => {
       // if statements for if horns = 1 do this, if horns = 2 do this, etc
-      if (!this.state.horns) return true;
-      if (ImageItem.horns === Number(this.state.horns)) return true;
+      if (!this.state.horns && !this.state.keyword) return true;
+
+      if (this.state.horns && !this.state.keyword) {
+        if (ImageItem.horns === Number(this.state.horns)) return true;
+      }
+
+      if (!this.state.horns && this.state.keyword) {
+        if (ImageItem.keyword === this.state.keyword) return true;
+      }
+
+      if (this.state.horns && this.state.keyword) {
+        if (ImageItem.horns === Number(this.state.horns) && ImageItem.keyword === this.state.keyword) return true;
+      }
+
       return false;
     });
 
