@@ -7,7 +7,7 @@ export default class Header extends Component {
     render() {
         return (
             <header className='header'>
-                I am the header!
+                Horned Creatures and where to find them!
             </header>
         )
     }
